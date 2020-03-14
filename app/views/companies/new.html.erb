@@ -1,0 +1,35 @@
+<h1>Sign up</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@company) do |f| %>
+      
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :address %>
+      <%= f.text_field :address, class: 'form-control' %>
+
+      <%= f.fields_for :users do |b| %>
+        <%= b.hidden_field :system_admin, :value => true %>
+
+        <%= b.label :last_name %>
+        <%= b.text_field :last_name, class: 'form-control' %>
+
+        <%= b.label :first_name %>
+        <%= b.text_field :first_name, class: 'form-control' %>
+
+        <%= b.label :email %>
+        <%= b.email_field :email, class: 'form-control' %>
+
+        <%= b.label :password %>
+        <%= b.password_field :password, class: 'form-control' %>
+
+        <%= b.label :password_confirmation, "Confirmation" %>
+        <%= b.password_field :password_confirmation, class: 'form-control' %>
+      <% end %>
+
+      <%= f.submit "Create my account", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

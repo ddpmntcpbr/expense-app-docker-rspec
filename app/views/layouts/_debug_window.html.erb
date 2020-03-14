@@ -1,0 +1,9 @@
+<%= debug(params) %>
+<% if user_signed_in? %>
+  <p>user_signed_in</p>
+  <%= current_user.email %>
+  <%= current_user.last_name %>
+  <%= current_user.first_name %>
+  <%= current_user.approver %>
+  <%= current_user.system_admin %>
+<% end%>
