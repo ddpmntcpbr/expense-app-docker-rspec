@@ -2,6 +2,7 @@
   <nav>
     <% if user_signed_in? %>
       <strong><%= link_to current_user.email, help_path %></strong>
+      <%= link_to '従業員作成', new_user_invitation_path %>
       <%= link_to 'プロフィール変更', edit_user_registration_path %>
       <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
     <% else %>
