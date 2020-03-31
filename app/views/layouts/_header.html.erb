@@ -2,11 +2,13 @@
   <nav>
     <% if user_signed_in? %>
       <strong><%= link_to current_user.email, help_path %></strong>
-      <%= link_to '従業員作成', new_user_invitation_path %>
+      <% if current_user.approver %>
+        <%= link_to '従業員登録', new_user_invitation_path %>
+      <% end %>
       <%= link_to 'プロフィール変更', edit_user_registration_path %>
       <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
     <% else %>
-      <%= link_to 'サインアップ', companies_signup_path %>
+      <%= link_to '会社情報登録', companies_signup_path %>
       <%= link_to 'ログイン', new_user_session_path %>
     <% end %>
       <%= Rails.env %>
