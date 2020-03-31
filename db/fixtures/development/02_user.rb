@@ -36,3 +36,29 @@ User.seed do |s|
   s.system_admin = false
   s.company_id = 2
 end
+
+User.seed do |s|
+  s.id = 4
+  s.email = "employee2@example.com"
+  s.password = "foobar"
+  s.confirmed_at = Time.zone.now
+  s.confirmation_sent_at = Time.zone.now
+  s.last_name = "EmployeeLastName2"
+  s.first_name = "EmployeeFirstName2"
+  s.approver = false
+  s.system_admin = false
+  s.company_id = 2
+end
+
+User.seed do |s|
+  s.id = 5
+  s.email = "employee3@example.com"
+  s.password = "foobar"
+  s.confirmed_at = Time.zone.now
+  s.confirmation_sent_at = Time.zone.now
+  s.last_name = "EmployeeLastName3"
+  s.first_name = "EmployeeFirstName3"
+  s.approver = false
+  s.system_admin = false
+  s.company_id = 2
+end
