@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_15_070430) do
+ActiveRecord::Schema.define(version: 2020_04_01_115558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,41 @@ ActiveRecord::Schema.define(version: 2020_03_15_070430) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "expense_approvals", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "expense_statement_id"
+    t.text "comment"
+    t.boolean "approved"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expense_statement_id"], name: "index_expense_approvals_on_expense_statement_id"
+    t.index ["user_id"], name: "index_expense_approvals_on_user_id"
+  end
+
+  create_table "expense_contents", force: :cascade do |t|
+    t.bigint "expense_statement_id"
+    t.datetime "account_date"
+    t.string "purpose"
+    t.string "facility"
+    t.string "section"
+    t.boolean "round_trip", default: false
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expense_statement_id"], name: "index_expense_contents_on_expense_statement_id"
+  end
+
+  create_table "expense_statements", force: :cascade do |t|
+    t.bigint "user_id"
+    t.boolean "applied", default: false
+    t.datetime "applied_at"
+    t.boolean "approved"
+    t.datetime "approved_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_expense_statements_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,5 +92,9 @@ ActiveRecord::Schema.define(version: 2020_03_15_070430) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "expense_approvals", "expense_statements"
+  add_foreign_key "expense_approvals", "users"
+  add_foreign_key "expense_contents", "expense_statements"
+  add_foreign_key "expense_statements", "users"
   add_foreign_key "users", "companies"
 end

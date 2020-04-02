@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :confirmable, invite_for: 2.weeks
     
   belongs_to :company
+  has_many :expense_statements
 end
