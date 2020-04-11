@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2020_04_01_115558) do
   end
 
   create_table "expense_approvals", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "expense_statement_id"
+    t.bigint "user_id"
     t.text "comment"
     t.boolean "approved"
     t.datetime "created_at", null: false
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_115558) do
 
   create_table "expense_contents", force: :cascade do |t|
     t.bigint "expense_statement_id"
-    t.datetime "account_date"
+    t.date "account_date"
     t.string "purpose"
     t.string "facility"
     t.string "section"
@@ -49,9 +49,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_115558) do
   create_table "expense_statements", force: :cascade do |t|
     t.bigint "user_id"
     t.boolean "applied", default: false
-    t.datetime "applied_at"
     t.boolean "approved"
-    t.datetime "approved_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_expense_statements_on_user_id"

@@ -7,7 +7,5 @@ ExpenseStatement.seed do |s|
   s.id = 2
   s.user = User.find_by(id:3)
   s.applied = true
-  s.applied_at = Time.zone.now
   s.approved = true
-  s.approved_at = Time.zone.now
 end

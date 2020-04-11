@@ -1,0 +1,19 @@
+<div class="field">
+  <%= f.label :account_date %>
+  <%= f.date_field :account_date, class: 'form-control' %>
+  <%= f.label :purpose %>
+  <%= f.text_field :purpose, class: 'form-control' %>
+  <%= f.label :facility %>
+  <%= f.text_field :facility, class: 'form-control' %>
+  <%= f.label :section %>
+  <%= f.text_field :section, class: 'form-control' %>
+  <%= f.label :round_trip %>
+  <%= f.select :round_trip, [["片道", false], ["往復", true]], include_blank: "片/往" %>
+  <%= f.label :amount %>
+  <%= f.number_field :amount, class: 'form-control' %>
+  <% if @expense_statement.persisted? %>
+    <%= f.label '削除' %>
+    <%= f.check_box :_destroy %>
+  <% end %>
+  <br>
+</div>

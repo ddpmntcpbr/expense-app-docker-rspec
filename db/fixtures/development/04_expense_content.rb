@@ -1,7 +1,7 @@
 ExpenseContent.seed do |s|
   s.id = 1
   s.expense_statement = ExpenseStatement.find_by(id:1)
-  s.account_date = Time.zone.now
+  s.account_date = Date.today
   s.purpose = "営業出張"
   s.facility = "新幹線"
   s.section = "東京-大阪"

@@ -1,0 +1,23 @@
+<h1>Expenses#new</h1>
+<p>承認者id: <%= @approver_user.id %></p>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@expense_statement, url: expenses_path) do |f| %>
+      <%= f.fields_for :expense_contents do |c| %>
+        <%= render 'expense_content_fields', f: c %>
+      <% end %>
+      <div class="field">
+        <%= link_to_add_association '追加', f, :expense_contents, data: { association_insertion_method: 'before' } %>
+      </div>
+
+      <%= f.fields_for :expense_approval do |c| %>
+        <%= c.hidden_field :user_id, :value => @approver_user.id %>
+      <% end %>
+      <%= f.label :applied %>
+      <%= f.select :applied, [["下書き", false], ["申請", true]], include_blank: "保存状態" %>
+      <%= f.submit "経費申請", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

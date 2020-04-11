@@ -7,4 +7,5 @@ class User < ApplicationRecord
     
   belongs_to :company
   has_many :expense_statements
+  has_many :expense_approvals
 end

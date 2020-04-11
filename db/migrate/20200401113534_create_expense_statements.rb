@@ -3,9 +3,7 @@ class CreateExpenseStatements < ActiveRecord::Migration[5.2]
     create_table :expense_statements do |t|
       t.references :user, foreign_key: true
       t.boolean :applied, default:false
-      t.datetime :applied_at
       t.boolean :approved
-      t.datetime :approved_at
 
       t.timestamps
     end
