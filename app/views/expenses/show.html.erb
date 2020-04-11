@@ -10,4 +10,6 @@
     <li>金額: <%= expense_content.amount %></li>
   <% end %>
 </ul>
+<%= link_to '編集', edit_expense_path(@expense_statement) %>
+<%= link_to '削除', expense_path(@expense_statement), method: :delete, data: { confirm: "本当に削除しますか?" }%>
 
