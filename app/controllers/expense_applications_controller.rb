@@ -51,11 +51,11 @@ class ExpenseApplicationsController < ApplicationController
 
   private
     def expense_statement_params
-      params.require(:expense_statement).permit(:applied, expense_contents_attributes: [:account_date, :purpose, :facility, :section, :round_trip, :amount, :_destroy])
+      params.require(:expense_statement).permit(:purpose, :applied, expense_contents_attributes: [:account_date, :purpose, :facility, :section, :round_trip, :amount, :_destroy])
     end
 
     def update_expense_statement_params
-      params.require(:expense_statement).permit(:applied, expense_contents_attributes: [:account_date, :purpose, :facility, :section, :round_trip, :amount, :_destroy, :id])
+      params.require(:expense_statement).permit(:purpose, :applied, expense_contents_attributes: [:account_date, :purpose, :facility, :section, :round_trip, :amount, :_destroy, :id])
     end
 
     def get_approver_user

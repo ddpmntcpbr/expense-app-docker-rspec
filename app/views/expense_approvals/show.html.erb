@@ -1,7 +1,9 @@
 <h1>ExpenseApprovals#show</h1>
+<h3>申請一覧</h3>
+<h3>目的: <%= @expense_statement.purpose %></h3>
 <ul>
   <% @expense_statement.expense_contents.each do |expense_content| %>
-    <h3>申請一覧</h3>
+    <h3>ExpenseContent</h3>
     <li>id: <%= expense_content.id %></li>
     <li>発生日: <%= expense_content.account_date %></li>
     <li>利用期間: <%= expense_content.facility %></li>

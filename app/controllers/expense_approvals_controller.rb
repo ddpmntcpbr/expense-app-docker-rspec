@@ -20,6 +20,7 @@ class ExpenseApprovalsController < ApplicationController
     if params[:approval]
       if @expense_approval.update(update_expense_approval_params)
         @expense_approval.update(approved:true)
+        @expense_approval.expense_statement.update(approved:true)
         redirect_to expense_approvals_path
       else
         render 'edit'
@@ -27,6 +28,8 @@ class ExpenseApprovalsController < ApplicationController
     else
       if @expense_approval.update(update_expense_approval_params)
         @expense_approval.update(approved:false)
+        @expense_approval.expense_statement.update(approved:false)
+        debugger
         redirect_to expense_approvals_path
       else
         render 'edit'
