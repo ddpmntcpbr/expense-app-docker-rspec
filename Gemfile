@@ -39,7 +39,11 @@ gem 'seed-fu'
 gem 'devise'
 gem 'devise_invitable'
 gem 'cocoon'
-gem 'jquery-rails'
+
+gem "bootstrap-sass", "~>3.3.6"
+gem "jquery-rails"
+gem "jquery-ui-rails"
+
 gem 'rails_admin'
 gem 'cancan'
 

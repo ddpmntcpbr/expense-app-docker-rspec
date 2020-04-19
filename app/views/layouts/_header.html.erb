@@ -9,7 +9,7 @@
       <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to '会社情報登録', companies_signup_path %>
-      <%= link_to 'ログイン', new_user_session_path %>
+      <%= link_to 'ログイン', new_user_session_path, class:"btn btn-primary" %>
     <% end %>
       <%= Rails.env %>
   </nav>
