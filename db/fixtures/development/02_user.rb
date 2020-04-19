@@ -7,8 +7,7 @@ User.seed do |s|
   s.confirmation_sent_at = Time.zone.now
   s.last_name = "AdminLastName"
   s.first_name = "AdminFirstName"
-  s.approver = false
-  s.system_admin = true
+  s.admin = true
 end
 
 User.seed do |s|
@@ -21,7 +20,6 @@ User.seed do |s|
   s.last_name = "ApproverLastName"
   s.first_name = "ApproverFirstName"
   s.approver = true
-  s.system_admin = false
 end
 
 User.seed do |s|
@@ -33,8 +31,6 @@ User.seed do |s|
   s.confirmation_sent_at = Time.zone.now
   s.last_name = "EmployeeLastName"
   s.first_name = "EmployeeFirstName"
-  s.approver = false
-  s.system_admin = false
 end
 
 User.seed do |s|
@@ -46,8 +42,6 @@ User.seed do |s|
   s.confirmation_sent_at = Time.zone.now
   s.last_name = "EmployeeLastName2"
   s.first_name = "EmployeeFirstName2"
-  s.approver = false
-  s.system_admin = false
 end
 
 User.seed do |s|
@@ -59,6 +53,4 @@ User.seed do |s|
   s.confirmation_sent_at = Time.zone.now
   s.last_name = "EmployeeLastName3"
   s.first_name = "EmployeeFirstName3"
-  s.approver = false
-  s.system_admin = false
 end

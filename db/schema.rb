@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_115558) do
     t.string "last_name"
     t.string "first_name"
     t.boolean "approver", default: false
-    t.boolean "system_admin", default: false
+    t.boolean "admin", default: false
     t.bigint "company_id"
     t.string "invitation_token"
     t.datetime "invitation_created_at"

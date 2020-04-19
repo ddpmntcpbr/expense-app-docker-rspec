@@ -11,7 +11,7 @@
       <%= f.text_field :address, class: 'form-control' %>
 
       <%= f.fields_for :users do |b| %>
-        <%= b.hidden_field :system_admin, :value => true %>
+        <%= b.hidden_field :approver, :value => true %>
 
         <%= b.label :last_name %>
         <%= b.text_field :last_name, class: 'form-control' %>

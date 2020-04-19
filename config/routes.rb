@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'expense_approvals/index'
   get 'expense_approvals/show'
   get 'expense_approvals/edit'
@@ -10,8 +11,12 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations',
     invitations: 'users/invitations'
-}
+  }
   
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
   root 'static_pages#home'
   get 'help', to: 'static_pages#help'
   get 'about', to: 'static_pages#about'

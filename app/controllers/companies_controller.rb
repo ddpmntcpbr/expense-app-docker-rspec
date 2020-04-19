@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     if @company.save
+      @company.users.update(approver:true)
       redirect_to root_url
     else
       render 'new'
@@ -19,7 +20,7 @@ class CompaniesController < ApplicationController
   private 
 
     def company_params
-        params.require(:company).permit(:name, :address, users_attributes: [:last_name, :first_name, :email, :password, :password_confirmation,:system_admin])
+        params.require(:company).permit(:name, :address, users_attributes: [:last_name, :first_name, :email, :password, :password_confirmation])
     end
 
 end
