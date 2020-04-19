@@ -1,0 +1,16 @@
+<h1>ExpenseApprovals#index</h1>
+<ul>
+  <% @expense_approvals.each do |expense_approval| %>
+    <h3>expense_approval</h3>
+    <li>id: <%= expense_approval.id %></li>
+    <li>作成日: <%= link_to expense_approval.updated_at, expense_approval_path(expense_approval.id) %></li>
+    <% if expense_approval.approved.nil? %>
+      <li>状態: 承認待ち</li>
+    <% elsif expense_approval.approved %>
+      <li>状態: 承認済み</li>
+    <% else %>
+      <li>状態: 却下済み</li>
+    <% end %>
+    <li>承認者コメント: <%= expense_approval.comment %></li>
+  <% end %>
+</ul>

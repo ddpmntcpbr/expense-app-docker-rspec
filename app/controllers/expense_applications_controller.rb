@@ -1,4 +1,4 @@
-class ExpensesController < ApplicationController
+class ExpenseApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :get_approver_user, only:[:new,:create,:edit,:update]
 
@@ -13,13 +13,15 @@ class ExpensesController < ApplicationController
   def new
     @expense_statement = current_user.expense_statements.build
     @expense_statement.expense_contents.build
-    @expense_statement.build_expense_approval
   end
 
   def create
     @expense_statement = current_user.expense_statements.build(expense_statement_params)
+    if ActiveRecord::Type::Boolean.new.cast(params[:expense_statement][:applied])
+      @expense_statement.build_expense_approval(user:@approver_user)
+    end
     if @expense_statement.save
-      redirect_to expenses_path
+      redirect_to expense_applications_path
     else
       render 'new'
     end
@@ -31,8 +33,11 @@ class ExpensesController < ApplicationController
 
   def update
     @expense_statement = current_user.expense_statements.find(params[:id])
+    if ActiveRecord::Type::Boolean.new.cast(params[:expense_statement][:applied])
+      @expense_statement.build_expense_approval(user:@approver_user)
+    end
     if @expense_statement.update(update_expense_statement_params)
-      redirect_to expenses_path
+      redirect_to expense_applications_path
     else
       render 'edit'
     end
@@ -41,16 +46,16 @@ class ExpensesController < ApplicationController
   def destroy
     @expense_statement = current_user.expense_statements.find(params[:id])
     @expense_statement.destroy
-    redirect_to expenses_path
+    redirect_to expense_applications_path
   end  
 
   private
     def expense_statement_params
-      params.require(:expense_statement).permit(:applied, expense_contents_attributes: [:account_date, :purpose, :facility, :section, :round_trip, :amount, :_destroy], expense_approval_attributes:[:user_id])
+      params.require(:expense_statement).permit(:applied, expense_contents_attributes: [:account_date, :purpose, :facility, :section, :round_trip, :amount, :_destroy])
     end
 
     def update_expense_statement_params
-      params.require(:expense_statement).permit(:applied, expense_contents_attributes: [:account_date, :purpose, :facility, :section, :round_trip, :amount, :_destroy, :id], expense_approval_attributes:[:user_id,:_destroy, :id])
+      params.require(:expense_statement).permit(:applied, expense_contents_attributes: [:account_date, :purpose, :facility, :section, :round_trip, :amount, :_destroy, :id])
     end
 
     def get_approver_user

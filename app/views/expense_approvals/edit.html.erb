@@ -1,0 +1,13 @@
+<h1>ExpenseApprovals#edit</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@expense_approval) do |f| %>
+      <%= f.label :comment %>
+      <%= f.text_area :comment %>
+      <%= f.submit "承認",  :name => "approval" %>
+      <%= f.submit "却下", :name => "rejection" %>
+    <% end %>
+  </div>
+</div>
+

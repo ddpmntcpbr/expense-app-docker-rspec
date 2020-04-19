@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'expense_approvals/index'
+  get 'expense_approvals/show'
+  get 'expense_approvals/edit'
+  get 'expense_approvals/update'
   get 'expenses/index'
   get 'expenses/show'
   devise_for :users, controllers: {
@@ -15,5 +19,6 @@ Rails.application.routes.draw do
   get  '/companies_signup',  to: 'companies#new'
 
   resources :companies, only: [:index,:new,:create]
-  resources :expenses
+  resources :expense_applications
+  resources :expense_approvals, only: [:index,:show,:edit,:update]
 end

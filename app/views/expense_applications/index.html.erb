@@ -1,9 +1,9 @@
-<h1>Expenses#index</h1>
+<h1>ExpenseApplications#index</h1>
 <ul>
   <% @expense_statements.each do |expense_statement| %>
     <h3>ExpenseStatement</h3>
     <li>id: <%= expense_statement.id %></li>
-    <li>作成日: <%= link_to expense_statement.created_at, expense_path(expense_statement.id) %></li>
+    <li>作成日: <%= link_to expense_statement.created_at, expense_application_path(expense_statement.id) %></li>
     <% if expense_statement.applied %>
       <% if expense_statement.approved.nil? %>
         <li>状態: 承認待ち</li>
@@ -15,9 +15,9 @@
     <% else %>
       <li>状態: 下書き</li>
     <% end %>
-    <% expense_approval = expense_statement.expense_approval %>
-    <% if expense_approval.present? %>
-      <li>承認者コメント: <%= expense_approval.comment %></li>
+      <li>目的: <%= expense_statement.purpose %></li>
+    <% if expense_statement.expense_approval.present? %>
+      <li>承認者コメント: <%= expense_statement.expense_approval.comment %></li>
     <% end %>
   <% end %>
 </ul>

@@ -1,15 +1,12 @@
-<h1>Expenses#show</h1>
+<h1>ExpenseApprovals#show</h1>
 <ul>
   <% @expense_statement.expense_contents.each do |expense_content| %>
     <h3>申請一覧</h3>
     <li>id: <%= expense_content.id %></li>
     <li>発生日: <%= expense_content.account_date %></li>
-    <li>目的: <%= expense_content.purpose %></li>
     <li>利用期間: <%= expense_content.facility %></li>
     <li>片/往: <%= expense_content.round_trip %></li>
     <li>金額: <%= expense_content.amount %></li>
   <% end %>
 </ul>
-<%= link_to '編集', edit_expense_path(@expense_statement) %>
-<%= link_to '削除', expense_path(@expense_statement), method: :delete, data: { confirm: "本当に削除しますか?" }%>
-
+<%= link_to '承認／却下', edit_expense_approval_path(@expense_approval) %>

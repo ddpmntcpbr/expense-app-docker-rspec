@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@expense_statement, url: expense_path) do |f| %>
+    <%= form_for(@expense_statement, url: expense_application_path) do |f| %>
       <%= f.fields_for :expense_contents do |c| %>
         <%= render 'expense_content_fields', f: c %>
       <% end %>

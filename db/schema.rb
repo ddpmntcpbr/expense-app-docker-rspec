@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 2020_04_01_115558) do
   create_table "expense_contents", force: :cascade do |t|
     t.bigint "expense_statement_id"
     t.date "account_date"
-    t.string "purpose"
     t.string "facility"
-    t.string "section"
+    t.string "section_from"
+    t.string "section_to"
     t.boolean "round_trip", default: false
     t.integer "amount"
     t.datetime "created_at", null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_115558) do
 
   create_table "expense_statements", force: :cascade do |t|
     t.bigint "user_id"
+    t.string "purpose"
     t.boolean "applied", default: false
     t.boolean "approved"
     t.datetime "created_at", null: false
